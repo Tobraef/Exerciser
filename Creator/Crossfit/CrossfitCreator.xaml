@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.Creator.Crossfit.CrossfitCreator"
+             x:Name="thisPage">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <Grid Padding="20" ColumnSpacing="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="VerticalTextAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="Small"/>
+                    </Style>
+                    <Style TargetType="Entry">
+                        <Setter Property="BackgroundColor" Value="LightGray"/>
+                        <Setter Property="FontSize" Value="Medium"/>
+                        <Setter Property="HorizontalOptions" Value="Fill"/>
+                    </Style>
+                </Grid.Resources>
+                <Label Grid.Column="0" Grid.Row="0" Text="Title" />
+                <Label Grid.Column="0" Grid.Row="1" Text="Number of sets" />
+                <Label Grid.Column="0" Grid.Row="2" Text="Break time between sets" />
+                <Label Grid.Column="0" Grid.Row="3" Text="Exercise duration" />
+                <Label Grid.Column="0" Grid.Row="4" Text="Break between exercises" />
+                <Entry Grid.Column="1" Grid.Row="0" Text="{Binding Name, Mode=TwoWay}"/>
+                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Sets, Mode=TwoWay}" MaxLength="2"/>
+                <Entry Grid.Column="1" Grid.Row="2" Text="{Binding BreakBetweenSets, Mode=TwoWay}" MaxLength="3"/>
+                <Entry Grid.Column="1" Grid.Row="3" Text="{Binding ExerciseDuration, Mode=TwoWay}" MaxLength="3"/>
+                <Entry Grid.Column="1" Grid.Row="4" Text="{Binding BreakBetweenExercises, Mode=TwoWay}" MaxLength="3"/>
+            </Grid>
+            <ListView x:Name="listView" ItemsSource="{Binding Rows}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Remove" Command="{Binding Source={x:Reference thisPage}, Path=ViewModel.RemoveRow}" CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Number}" VerticalTextAlignment="Center"/>
+                                <Entry Text="{Binding Name, Mode=TwoWay}" VerticalOptions="Center" MaxLength="30"
+                                       WidthRequest="200" BackgroundColor="LightGreen"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add exercise" Command="{Binding AddRow}" HorizontalOptions="Center"/>
+            <Button Text="Finish" Command="{Binding Add}"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.Sound.PlaylistCreator"
+             x:Name="thisPage">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <Grid Padding="20, 20, 20, 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="400"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Playlist title" FontSize="Medium"/>
+                <Entry FontSize="Medium" BackgroundColor="LightGray" MaxLength="50" Text="{Binding Title, Mode=TwoWay}" 
+                       HorizontalOptions="Fill" Grid.Column="1"/>
+                <ListView ItemsSource="{Binding Path=ViewModel.AvailableSongs, Mode=TwoWay, Source={x:Reference thisPage}}" 
+                          ItemTapped="ListView_ItemTapped" 
+                          SeparatorColor="Black" Grid.Column="0" Grid.Row="1">
+                    <ListView.Header>
+                        <Label Text="Songs found" HorizontalTextAlignment="Center"/>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding FileName}" TextColor="Black" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView ItemsSource="{Binding Path=ViewModel.SongsIn, Mode=TwoWay, Source={x:Reference thisPage}}"
+                          ItemTapped="ListView_ItemTapped" 
+                          SeparatorColor="Black" Grid.Column="1" Grid.Row="1">
+                    <ListView.Header>
+                        <Label Text="Songs in" HorizontalTextAlignment="Center"/>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding FileName}" TextColor="Black"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+                <Button Text="Finish" HorizontalOptions="Center" FontSize="Medium" 
+                    Command="{Binding Path=ViewModel.Add, Source={x:Reference thisPage}}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

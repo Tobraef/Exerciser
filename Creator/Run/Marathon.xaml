@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tools="clr-namespace:App1.Tools"
+             mc:Ignorable="d"
+             x:Class="App1.Creator.Run.Marathon"
+             x:Name="thisPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <tools:IntString x:Key="intToString"/>
+            <tools:DoubleString x:Key="doubleToString"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid ColumnSpacing="10" Padding="20">
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                    <Setter Property="FontSize" Value="Medium"/>
+                    <Setter Property="VerticalTextAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="Entry">
+                    <Setter Property="WidthRequest" Value="100"/>
+                    <Setter Property="BackgroundColor" Value="LightGray"/>
+                    <Setter Property="Grid.Column" Value="1"/>
+                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Title"/>
+            <Entry Text="{Binding Title, Mode=TwoWay}" MaxLength="50"/>
+            <Label Text="Duration" Grid.Row="1"/>
+            <TimePicker Time="{Binding Duration, Mode=TwoWay}" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="Distance (meters)" Grid.Row="2"/>
+            <Entry Text="{Binding Distance, Mode=TwoWay, Converter={StaticResource intToString}}" Grid.Row="2" MaxLength="5"/>
+            <StackLayout Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="3">
+                <Label Text="Notify when you are too slow" Margin="5"/>
+                <Switch x:Name="notifSwitch" Margin="5" IsToggled="{Binding NotifOnDifference, Mode=TwoWay}"
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+            <Label Text="Notify on difference" Grid.Row="4" IsVisible="{Binding IsToggled, Source={x:Reference notifSwitch}}"/>
+            <Entry Text="{Binding DifferenceNotify, Mode=TwoWay, Converter={StaticResource doubleToString}}" MaxLength="5"
+                   IsVisible="{Binding IsToggled, Source={x:Reference notifSwitch}}" Grid.Row="4"/>
+            <Button Text="Add" Command="{Binding Path=ViewModel.Add, Source={x:Reference thisPage}}" HorizontalOptions="Center"
+                    Grid.Row="5" Grid.ColumnSpan="2"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

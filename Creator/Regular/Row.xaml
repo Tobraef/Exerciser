@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:App1.Creator.Regular"
+             mc:Ignorable="d"
+             x:Class="App1.Creator.Regular.Row"
+             x:Name="thisPage">
+    <StackLayout>
+        <Frame BorderColor="Black" Padding="10">
+            <Grid ColumnSpacing="3" RowSpacing="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="Entry">
+                        <Setter Property="FontSize" Value="Small"/>
+                        <Setter Property="HorizontalOptions" Value="Fill"/>
+                        <Setter Property="HeightRequest" Value="40"/>
+                    </Style>
+                </Grid.Resources>
+                <Entry Grid.Column="0" Grid.Row="0" Placeholder="Name" 
+                       Text="{Binding Mode=TwoWay, Path=ViewModel.Name, Source={x:Reference thisPage}}" MaxLength="50"/>
+                <Entry Grid.Column="0" Grid.Row="1" Placeholder="Series" 
+                       Text="{Binding Mode=TwoWay, Path=ViewModel.Series, Source={x:Reference thisPage}}" MaxLength="1"/>
+                <Entry Grid.Column="0" Grid.Row="2" Placeholder="Repeats" 
+                       Text="{Binding Mode=TwoWay, Path=ViewModel.Repeats, Source={x:Reference thisPage}}" MaxLength="2"/>
+                <Entry Grid.Column="1" Grid.Row="0" Placeholder="Weight" 
+                       Text="{Binding Mode=TwoWay, Path=ViewModel.Weight, Source={x:Reference thisPage}}" MaxLength="3"/>
+                <Entry Grid.Column="1" Grid.Row="1" Placeholder="Change in reps" 
+                       Text="{Binding Mode=TwoWay, Path=ViewModel.Change, Source={x:Reference thisPage}}" MaxLength="2"/>
+                <Entry Grid.Column="1" Grid.Row="2" Placeholder="Time between (seconds)" 
+                       Text="{Binding Mode=TwoWay, Path=ViewModel.Time, Source={x:Reference thisPage}}" MaxLength="3"/>
+            </Grid>
+        </Frame>
+    </StackLayout>
+</ContentView>

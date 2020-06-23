@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:App1.Creator.Regular"
+             mc:Ignorable="d"
+             x:Class="App1.Creator.Regular.Creator"
+             x:Name="thisPage">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <Grid Padding="40, 0, 40, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="VerticalTextAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="Small"/>
+                    </Style>
+                    <Style TargetType="Entry">
+                        <Setter Property="FontSize" Value="Small"/>
+                        <Setter Property="HorizontalOptions" Value="Fill"/>
+                        <Setter Property="HeightRequest" Value="40"/>
+                        <Setter Property="WidthRequest" Value="100"/>
+                    </Style>
+                </Grid.Resources>
+                <Label Grid.Row="0" Text="Title"/>
+                <Label Grid.Row="1" Text="Break between exercises"/>
+                <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Name, Mode=TwoWay}"/>
+                <Entry Grid.Row="1" Grid.Column="1" Text="{Binding BreakBetween, Mode=TwoWay}"/>
+            </Grid>
+            <StackLayout x:Name="stackList">
+            </StackLayout>
+            <Button Text="Add exercise" Command="{Binding AddRow}" HorizontalOptions="Center"/>
+            <Button Text="Finish" Command="{Binding Add}"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

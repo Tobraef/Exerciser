@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:regular="clr-namespace:App1.Creator.Regular"
+             xmlns:crossfit="clr-namespace:App1.Creator.Crossfit"
+             xmlns:run="clr-namespace:App1.Creator.Run"
+             mc:Ignorable="d"
+             x:Class="App1.WorkoutCreation">
+    <regular:Creator Title="Regular"/>
+    <crossfit:CrossfitCreator Title="Crossfit"/>
+    <run:Marathon Title="Marathon"/>
+</TabbedPage>

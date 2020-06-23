@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.Schedule.Scheduler">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label VerticalOptions="Center" Text="Choose date to start workout" x:Name="labelChosenWorkout"/>
+                    <TimePicker VerticalOptions="Center" x:Name="timePicker" Time="12:00"/>
+                    <DatePicker VerticalOptions="Center" x:Name="datePicker" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="Margin" Value="10, 0 ,10, 0"/>
+                        </Style>
+                    </StackLayout.Resources>
+                    <Label Text="Repeat workout" VerticalOptions="Center"/>
+                    <Switch x:Name="switchRepeat" VerticalOptions="Center" IsToggled="True" Toggled="Switch_Repeat" Margin="10, 0, 10, 0" />
+                    <Picker x:Name="pickerRepeat" 
+                            VerticalOptions="Center" 
+                            ItemDisplayBinding="{Binding Key}" 
+                            WidthRequest="100" FontSize="Small" />
+                </StackLayout>
+                
+            </StackLayout>
+            <Frame BorderColor="Aquamarine" Padding="15">
+                <ListView x:Name="listView" HasUnevenRows="True">
+                    <ListView.Header>
+                        <Label Text="Choose workout to schedule" HorizontalTextAlignment="Center"/>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Title}" TextColor="Blue" Detail="{Binding Description}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+            <Button x:Name="scheduleButton"
+                    Text="Schedule" Clicked="Button_Clicked" HorizontalOptions="Center" IsEnabled="{Binding CanShedule}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

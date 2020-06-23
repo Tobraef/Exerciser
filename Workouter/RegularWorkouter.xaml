@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.Workouter.RegularWorkouter"
+             x:Name="thisPage">
+    <ContentPage.Content>
+        <StackLayout Padding="30, 50, 30, 50">
+            <StackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="Medium"/>
+                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                </Style>
+            </StackLayout.Resources>
+            <Label x:Name="labelCurrent" Text="Current: " FontAttributes="Bold" />
+            <Label x:Name="labelNext" Text="Next: " />
+            <Label x:Name="labelTime" Text="00:00"/>
+            <ProgressBar x:Name="progressBar" HorizontalOptions="FillAndExpand"
+                         VerticalOptions="FillAndExpand" />
+            <ContentView Padding="20">
+                <Button Text="Start" HorizontalOptions="Center" 
+                        Command="{Binding BeginCommand, Source={x:Reference thisPage}}" />
+            </ContentView>
+            <StackLayout Orientation="Horizontal">
+                <StackLayout.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                        <Setter Property="FontSize" Value="Medium"/>
+                    </Style>
+                </StackLayout.Resources>
+                <Button Text="Next" Command="{Binding NextCommand, Source={x:Reference thisPage}}"/>
+                <Button Text="Stop" Clicked="StopResume_Clicked"/>
+                <Button Text="Finish" Command="{Binding FinishCommand, Source={x:Reference thisPage}}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

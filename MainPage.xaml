@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tools="clr-namespace:App1.Tools"
+             mc:Ignorable="d"
+             x:Class="App1.MainPage"
+             x:Name="mainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Manage" Command="{Binding NavigateManage, Source={x:Reference mainPage}}"/>
+        <ToolbarItem Text="Create" Command="{Binding NavigateCreate, Source={x:Reference mainPage}}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <tools:TimeToString x:Key="timeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Casual tool" Clicked="Button_Clicked_1"/>
+        </StackLayout>
+        <Label Text="Your workouts" HorizontalOptions="Center"/>
+        <ContentView Padding="10">
+            <ListView x:Name="itemsList" HasUnevenRows="True" SeparatorColor="Black" >
+                <ListView.Header>
+                    <Label FontSize="Medium" Text="Tap twice to exercise"
+                           TextColor="LawnGreen"
+                           HorizontalTextAlignment="Center"/>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CommandUseWorkout, Source={x:Reference mainPage}}" 
+                                                          NumberOfTapsRequired="2" 
+                                                          CommandParameter="{Binding Title}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Label Text="{Binding Title}" TextColor="Salmon" FontSize="Medium"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="FontSize" Value="Small"/>
+                                        </Style>
+                                    </StackLayout.Resources>
+                                    <Label Text="Type:"/>
+                                    <Label Text="{Binding WorkoutType}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="FontSize" Value="Small"/>
+                                        </Style>
+                                    </StackLayout.Resources>
+                                    <Label Text="Duration:"/>
+                                    <Label Text="{Binding WorkoutDuration, Converter={StaticResource timeConverter}}" />
+                                </StackLayout>
+                                <Label Text="{Binding Description}" FontSize="Small"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ContentView>
+        <Label x:Name="labelDebug"/>
+    </StackLayout>
+
+</ContentPage>

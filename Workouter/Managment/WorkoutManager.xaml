@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tools="clr-namespace:App1.Tools"
+             mc:Ignorable="d"
+             x:Class="App1.Workouter.Managment.WorkoutManager"
+             x:Name="thisPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <tools:TimeToString x:Key="timeConverter" />
+            <tools:ToStringConverter x:Key="toStringConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="listView" ItemsSource="{Binding Workouts}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit" Command="{Binding Source={x:Reference thisPage}, Path=ViewModel.Edit}" CommandParameter="{Binding .}"/>
+                                <MenuItem Text="Remove" Command="{Binding Source={x:Reference thisPage}, Path=ViewModel.Delete}" CommandParameter="{Binding .}"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout>
+                                <Label Text="{Binding Title}" TextColor="Salmon" FontSize="Medium"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="FontSize" Value="Small"/>
+                                        </Style>
+                                    </StackLayout.Resources>
+                                    <Label Text="Type:"/>
+                                    <Label Text="{Binding WorkoutType, Converter={StaticResource toStringConverter}}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout.Resources>
+                                        <Style TargetType="Label">
+                                            <Setter Property="FontSize" Value="Small"/>
+                                        </Style>
+                                    </StackLayout.Resources>
+                                    <Label Text="Duration:"/>
+                                    <Label Text="{Binding WorkoutDuration, Converter={StaticResource timeConverter}}" />
+                                </StackLayout>
+                                <Label Text="{Binding Description}" FontSize="Small"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add" HorizontalOptions="Center" Command="{Binding Add}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

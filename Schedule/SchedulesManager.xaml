@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.Schedule.SchedulesManager"
+             x:Name="thisPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="listViewSchedules" HasUnevenRows="True">
+                <ListView.Header>
+                    <Label HorizontalTextAlignment="Center" Text="Your schedules, tap and hold to display actions"/>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Remove" Command="{Binding Remove, Source={x:Reference thisPage}}" CommandParameter="{Binding Id}"/>
+                                <MenuItem Text="Edit" Command="{Binding Edit, Source={x:Reference thisPage}}" CommandParameter="{Binding Id}"/>
+                            </ViewCell.ContextActions>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Label Text="{Binding TimeDescription}" TextColor="Cyan"/>
+                                    <Label Text="{Binding Description}"/>
+                                </StackLayout>
+                                <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding IsOn}" Toggled="Switch_Toggled"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Add" HorizontalOptions="Center" Command="{Binding Path=Add, Source={x:Reference thisPage}}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

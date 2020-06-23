@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.Workouter.CrossfitWorkouter">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </StackLayout.Resources>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Sound" FontSize="Small"/>
+                <Switch x:Name="switchSound" IsToggled="False"/>
+            </StackLayout>
+            <Frame x:Name="frameExercise" BorderColor="Azure" Padding="5" BackgroundColor="Accent">
+                <StackLayout x:Name="panelExercise">
+                    <StackLayout.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                        </Style>
+                    </StackLayout.Resources>
+                    <Label x:Name="labelSet" FontSize="Small">Set X</Label>
+                    <Label x:Name="labelExerciseTime" FontSize="Medium">00:00</Label>
+                    <Label x:Name="labelExercise" FontSize="Large">Exercise</Label>
+                    <Label x:Name="labelBreakTime" FontSize="Medium">00:00</Label>
+                    <Label x:Name="labelNextExercise" FontSize="Small">Coming up</Label>
+                </StackLayout>
+            </Frame>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="buttonBreak" IsEnabled="False" Text="Stop" Clicked="ButtonBreak_Clicked"/>
+                <Button x:Name="buttonSkip" Grid.Column="1" IsEnabled="False" Text="Skip" Clicked="ButtonSkip_Clicked"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:wourkouter="clr-namespace:App1.Workouter"
+             mc:Ignorable="d"
+             x:Class="App1.Workouter.MarathonWorkouter"
+             x:Name="thisPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                    <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                </Style>
+            </StackLayout.Resources>
+            <Label Text="{Binding Title}"/>
+            <Frame Padding="10" BackgroundColor="LightGreen" BorderColor="Black">
+                <Label Text="{Binding Description}"/>
+            </Frame>
+            <ProgressBar Progress="{Binding Progress}" />
+            <Label Text="{Binding Goal}"/>
+            
+            <StackLayout Orientation="Horizontal">
+                <StackLayout.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                    </Style>
+                </StackLayout.Resources>
+                <Button Text="{Binding WorkButtonText}" Command="{Binding Path=ViewModel.Start, Source={x:Reference thisPage}}"/>
+                <Button Text="Finish" Command="{Binding Path=ViewModel.Finish, Source={x:Reference thisPage}}"/>
+            </StackLayout>
+            <wourkouter:SoundView x:Name="soundView"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

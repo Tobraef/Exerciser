@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="App1.Workouter.SoundView">
+  <ContentView.Content>
+        <Frame BorderColor="Black" Padding="10">
+      <StackLayout Padding="20, 0, 20, 0">
+                <Label Text="Music" HorizontalTextAlignment="Center" FontSize="Medium"/>
+                <Picker x:Name="picker" SelectedIndexChanged="Picker_SelectedIndexChanged" WidthRequest="300"/>
+            <Label x:Name="songLabel" IsVisible="False" />
+            <StackLayout Orientation="Horizontal">
+                    <StackLayout.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                            <Setter Property="IsVisible" Value="False"/>
+                        </Style>
+                    </StackLayout.Resources>
+                    <Button x:Name="previousbutton" Text="&lt;&lt;" Clicked="Previousbutton_Clicked" />
+                    <Button x:Name="nextButton" Text="&gt;&gt;" Clicked="NextButton_Clicked" />
+                </StackLayout>  
+        </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>
